@@ -60,12 +60,12 @@ async function handleRequest(request) {
     site = await fetch(urls[aRand]);
     cookieSite = new Response(site.body, site);
     //store cookie
-    cookieSite.headers.set("Cookie", urls[aRand]);
+    cookieSite.headers.set("Set-Cookie", urls[aRand]);
     return reWrite.transform(cookieSite);
   }
   //We stored the cookie 
   else {
-    site = await fetch(cookieSite.headers.get("Cookie"));
+    site = await fetch(cookieSite.headers.get("Set-Cookie"));
     return reWrite.transform(site);
   }
 }
